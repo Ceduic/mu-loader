@@ -26,7 +26,12 @@
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="images/favicon.png">
-
+	<script language="JavaScript" type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
+  <script>
+  $(function() {
+            var myDropzone = new Dropzone("div#dropblock", { url: "file-upload"});
+        });
+  </script>
 </head>
 <body>
 
@@ -39,15 +44,15 @@
         <p>A RESTful image ipload service.</p>
       </div>
 	  <div class="one-half column" style="margin-top: 25%" id="dropblock">
+	  <h5>Drop the image here!</h5>
+	  <p>Or just select it<input type="file" id="fileinput" /></p>
 	  </div>
     </div>
   </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script>
-  var myDropzone = new Dropzone("dropblock", { url: "/file/post"});
-  </script>
+  
   <script src="scripts/cscript.js"></script>
   <script src="scripts/dropzone.js"></script>
 </body>
