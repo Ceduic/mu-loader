@@ -6,7 +6,9 @@
                  [compojure "1.4.0"]
                  [ring/ring-defaults "0.1.5"]]
   :plugins [[lein-ring "0.9.7"]]
-  :ring {:handler mu-loader.handler/app}
+  :ring {:handler mu-loader.main/app}
   :profiles
   {:dev {:dependencies [[javax.servlet/servlet-api "2.5"]
-                        [ring/ring-mock "0.3.0"]]}})
+                        [ring/ring-mock "0.3.0"]
+                        [korma "0.4.2"]
+                        [com.h2database/h2 "1.3.170"]]}})
