@@ -26,10 +26,16 @@
              :body {:info (images/get-image id)
                     :comments (comments/get-comments id)}})
 
+  (POST "/api/images" [:as {parameters :params}]
+        {:status 201
+         :headers {"location" "/null"}})
+
   (route/not-found "Not Found"))
 
 (def app
-  (-> (wrap-defaults app-routes site-defaults)
-      (middleware/wrap-json-body)
-      (middleware/wrap-json-params)
-      (middleware/wrap-json-response)))
+  (-> app-routes
+    ; Disabled CSRF protection for development
+    ; (wrap-defaults site-defaults)
+    (middleware/wrap-json-body)
+    (middleware/wrap-json-params)
+    (middleware/wrap-json-response)))
