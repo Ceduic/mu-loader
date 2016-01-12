@@ -3,7 +3,9 @@
             [compojure.route :as route]
             [ring.middleware.defaults :refer [site-defaults
                                               wrap-defaults]]
-            [ring.middleware.json :as middleware]
+            [ring.middleware.json :as jsonware]
+            [ring.middleware.params :as paramsware]
+            [ring.middleware.multipart-params :as multipware]
             [ring.util.response :as resp]
             [mu-loader.components.comments :as comments]
             [mu-loader.components.images :as images]))
@@ -28,7 +30,7 @@
 
   (POST "/api/images" [:as {parameters :params}]
         {:status 201
-         :headers {"location" "/null"}})
+         :headers {"Location" "/null"}})
 
   (route/not-found "Not Found"))
 
@@ -36,6 +38,8 @@
   (-> app-routes
     ; Disabled CSRF protection for development
     ; (wrap-defaults site-defaults)
-    (middleware/wrap-json-body)
-    (middleware/wrap-json-params)
-    (middleware/wrap-json-response)))
+    (jsonware/wrap-json-body)
+    (jsonware/wrap-json-params)
+    (jsonware/wrap-json-response)
+    (paramsware/wrap-params)
+    (multipware/wrap-multipart-params)))
