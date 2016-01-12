@@ -1,5 +1,6 @@
 (ns mu-loader.components.images)
 
+
 (defn get-images [parameters]
   ;; Return an array of images based on query parameters
   [{:id -1
