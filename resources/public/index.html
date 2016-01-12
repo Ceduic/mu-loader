@@ -16,6 +16,7 @@
   <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -25,26 +26,49 @@
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+	<link rel="icon" type="image/png" href="images/favicon.png">
 	<script language="JavaScript" type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
-  <script>
-  $(function() {
-            var myDropzone = new Dropzone("div#dropblock", { url: "file-upload"});
-        });
-  </script>
+	<script src="scripts/cscript.js"></script>
+	<script>
+	$(document).ready(function(){
+			document.getElementById('fileinput').addEventListener('change', function(){
+			var file = this.files[0];
+			console.log("name : " + file.name);
+			console.log("size : " + file.size);
+			console.log("type : " + file.type);
+			console.log("date : " + file.lastModified);
+			}, false);
+		});
+		</script>
 </head>
 <body>
 
 <!--Header–––––––––––––––––––––––––––––––––––––––––––––––––– -->
+<div id="uploadblock" class="sixteen columns" style="display: none; visibility: visible;">
+	<div class="five columns offset-by-three" id="uploadrow">
+		<div class="two-thirds column">
+		  <input type="file" name="fileinput" id="fileinput" class="inputfile" />
+		  <label for="fileinput"><strong><i class="material-icons w3-xlarge">file_upload</i>Choose a file</strong></label>
+		</div>
+		<div class="one-third column u-pull-right" id="close">
+		  <i class="material-icons w3-xlarge">close</i>
+		</div>
+
+		<div class="u-full-width">
+			<div id="gallery"></div>
+		</div>
+	</div>
+</div>
+
 	<div class="container">
 		<div class="five columns">
 			<h1>μLoader</h1>
 		</div>
 		<div id="nav" class="seven columns">
-			<ul>
-				<li><a href="#">home</a></li>
-				<li><a href="#">upload</a></li>
-				<li><a href="#">top</a></li>
+			<ul id="navigation">
+				<li class=""><a href="#"><i class="material-icons w3-xlarge">home</i>home</a></li>
+				<li class="upload"><a href="#"><i class="material-icons w3-xlarge">file_upload</i>upload</li>
+				<li class=""><a href="#"><i class="material-icons w3-xlarge">terrain</i>top</a></li>
 			</ul>
 		</div>
 	</div>
@@ -52,28 +76,23 @@
 
   <!-- Primary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <div class="container">
+   <div class="container" id="gallery">
 		<div class="row">
-			  <div class="one-half column" style="margin-top: 25%">
-				<p>A RESTful image ipload service.</p>
-			  </div>
-			  
-			  <div class="one-half column" style="margin-top: 25%" id="dropblock">
-			  <h5>Drop the image here!</h5>
-			  </div>
-			  <p>Or just select it<input type="file" id="fileinput" /></p>
+			<div class="u-full-width">
+				
+			</div>
 		</div>
   </div>
   
  <!--Footer–––––––––––––––––––––––––––––––––––––––––––––––––– -->
- <div class="">
-	
+ <div class="container">
+	 <div id="footer" class="u-full-width">
+		<h6>Copyright © 2016 Olga Kushanova, Max Salminen</h6>	
+	 </div>
  </div>
 
 <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  
-  <script src="scripts/cscript.js"></script>
   <script src="scripts/dropzone.js"></script>
 </body>
 </html>
