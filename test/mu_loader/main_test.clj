@@ -12,4 +12,17 @@
 
   (testing "not-found route"
     (let [response (app (mock/request :get "/invalid"))]
-      (is (= (:status response) 404)))))
+      (is (= (:status response) 404))))
+
+  ;;; Tests for public API
+  (testing "API: get images"
+    (let [response (app (mock/request :get "/api/images"))]
+      (is (= (:status response) 200))))
+
+  (testing "API: post image"
+    (let [response (app (mock/request :post "/api/images"))]
+      (is (= (:status response) 200))))
+
+  (testing "API: get image"
+  (let [response (app (mock/request :get "/api/images"))]
+    (is (= (:status response) 200))))
