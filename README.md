@@ -2,6 +2,8 @@
 
 RESTful image upload service
 
+[![Build Status](https://travis-ci.org/Ceduic/mu-loader.svg?branch=master)](https://travis-ci.org/Ceduic/mu-loader)
+
 ## Prerequisites
 
 You will need [Leiningen][] 2.0.0 or above installed.
