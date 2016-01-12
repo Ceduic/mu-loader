@@ -1,6 +1,6 @@
 # mu-loader
 
-RESTful image uploading service
+RESTful image upload service
 
 ## Prerequisites
 
@@ -10,9 +10,9 @@ You will need [Leiningen][] 2.0.0 or above installed.
 
 ## Running
 
-To start a web server for the application, run:
+To start the web server in live reload environment, run:
 
-    lein ring server
+    lein ring server-headless [port-number]
 
 ## License
 
