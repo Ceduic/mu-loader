@@ -55,7 +55,7 @@
 (def app
   (-> app-routes
     ; Disabled CSRF protection for development
-    ; (wrap-defaults site-defaults)
+    (wrap-defaults (assoc- in site-defaults [:security :anti-forgery] false))
     (jsonware/wrap-json-body)
     (jsonware/wrap-json-params)
     (jsonware/wrap-json-response)
