@@ -11,17 +11,21 @@
 (defroutes app-routes
   ;; Serve static files required for front
   (GET  "/" [] (resp/content-type
-                 (resp/resource-response "index.html" {:root "public"}) "text/html"))
+                 (resp/resource-response "index.html"
+                                         {:root "public"}) "text/html"))
 
   ;;; Public API for REST operations
   ;; Request images based on a set of parameters
-  (GET "/api/images" parameters (resp/content-type
-                                  (do (println parameters)
-                                    (images/get-images parameters)) "text/json"))
+  (GET "/api/images" [:as {parameters :params}]
+            {:status 200
+             :body (images/get-images parameters)})
+
   ;; Request data for an image based on a set of parameters
-  (GET "/api/images/:id{[0-9]+}" [id] {:status 200
-                                       :body {:info (images/get-image id)
-                                              :comments (comments/get-comments id)}})
+  (GET "/api/images/:id{[0-9]+}" [id]
+            {:status 200
+             :body {:info (images/get-image id)
+                    :comments (comments/get-comments id)}})
+
   (route/not-found "Not Found"))
 
 (def app
