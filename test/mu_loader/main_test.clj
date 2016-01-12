@@ -20,7 +20,8 @@
 
   (testing "API: post image"
     (let [response (app (mock/request :post "/api/images"))]
-      (is (= (:status response) 201))))
+      (is (and (= (:status response) 400)
+               (not (nil? (get-in response [:headers "Location"])))))))
 
   (testing "API: get image"
     (let [response (app (mock/request :get "/api/images"))]
