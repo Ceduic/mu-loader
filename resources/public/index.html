@@ -32,6 +32,7 @@
 	<script>
 	$(document).ready(function(){
 			document.getElementById('fileinput').addEventListener('change', function(){
+			$('#submit').css("display", "block");
 			var file = this.files[0];
 			console.log("name : " + file.name);
 			console.log("size : " + file.size);
@@ -60,7 +61,7 @@
 			<div class="u-full-width">
 				<div id="gallery"></div>
 			</div>
-				<input type="submit" value="submit">
+				<input type="submit" value="Post it!" id="submit" style="display: none">
 		</form>
 	</div>
 </div>

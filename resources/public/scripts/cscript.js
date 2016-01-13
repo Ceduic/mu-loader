@@ -27,17 +27,25 @@ function previewImage(file) {
     }
 
     var thumb = document.createElement("div");
-    thumb.classList.add('thumbnail'); // Add the class thumbnail to the created div
-
+    thumb.classList.add('thumbnail'); 
+	// Add the class thumbnail to the created div
+	
     var img = document.createElement("img");
     img.file = file;
     thumb.appendChild(img);
     gallery.appendChild(thumb);
+	
+	var details = document.createElement("div");
+	details.classList.add('details');
+	var name = document.createElement("p");
+	name = file.name;
+	$('details').append("test");
+	gallery.appendChild(details);
 
     // Using FileReader to display the image content
     var reader = new FileReader();
     reader.onload = (function(aImg) { return function(e) { aImg.src = e.target.result; }; })(img);
     reader.readAsDataURL(file);
-}
+}	
 
 });
