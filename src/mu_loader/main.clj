@@ -11,22 +11,22 @@
             [mu-loader.components.comments :as comments]
             [mu-loader.components.images :as images]))
 
-(defn load-file [file]
-  (if (not (nil? file))
-    (let [file-name (file :filename)
-          size (file :size)
-          file-type (file :content-type)
-          temp-file (file :tempfile)]
-      (cond
-        (not (or (= file-type "application/jpg") (= file-type "application/png")))
-       :else
-       (do
-         (println file)
-         (io/copy temp-file (io/file (format "./resources/public/data/images/%s" file-name)))
-          201
-        ))
-      )
-    400))
+;; (defn load-file [file]
+;;   (if (not (nil? file))
+;;     (let [file-name (file :filename)
+;;           size (file :size)
+;;           file-type (file :content-type)
+;;           temp-file (file :tempfile)]
+;;       (cond
+;;         (not (or (= file-type "application/jpg") (= file-type "application/png")))
+;;        :else
+;;        (do
+;;          (println file)
+;;          (io/copy temp-file (io/file (format "./resources/public/data/images/%s" file-name)))
+;;           201
+;;         ))
+;;       )
+;;     400))
 
 (defroutes app-routes
   ;; Serve static files required for front
@@ -59,7 +59,7 @@
 (def app
   (-> app-routes
     ; Disabled CSRF protection for development
-    (wrap-defaults (assoc- in site-defaults [:security :anti-forgery] false))
+    (wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
     (jsonware/wrap-json-body)
     (jsonware/wrap-json-params)
     (jsonware/wrap-json-response)
