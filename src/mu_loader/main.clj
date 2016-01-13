@@ -17,11 +17,15 @@
           size (file :size)
           file-type (file :content-type)
           temp-file (file :tempfile)]
-      (do
-       (println file)
-       (io/copy temp-file (io/file (format "./resources/public/data/images/%s" file-name)))
-        201
-      ))
+      (cond
+        (not (or (= file-type "application/jpg") (= file-type "application/png")))
+       :else
+       (do
+         (println file)
+         (io/copy temp-file (io/file (format "./resources/public/data/images/%s" file-name)))
+          201
+        ))
+      )
     400))
 
 (defroutes app-routes

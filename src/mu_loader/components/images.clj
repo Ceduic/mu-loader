@@ -1,5 +1,9 @@
 (ns mu-loader.components.images)
 
+(def image-count (atom 0))
+
+(defn save-image [file]
+  )
 
 (defn get-images [parameters]
   ;; Return an array of images based on query parameters
