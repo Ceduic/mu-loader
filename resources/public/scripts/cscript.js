@@ -38,8 +38,8 @@ function previewImage(file) {
 	var details = document.createElement("div");
 	details.classList.add('details');
 	var name = document.createElement("p");
-	name = file.name;
-	$('details').append("test");
+	name = files.name;
+	$('details').append(name);
 	gallery.appendChild(details);
 
     // Using FileReader to display the image content
