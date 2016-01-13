@@ -7,31 +7,9 @@
             [ring.middleware.params :as paramsware]
             [ring.middleware.multipart-params :as multipware]
             [ring.util.response :as resp]
-            [clojure.java.io :as io]
             [mu-loader.components.comments :as comments]
             [mu-loader.components.images :as images]))
 
-(defn load-image [file]
-  (if (not (nil? file))
-    (let [file-name (file :filename)
-          size (file :size)
-          file-type (file :content-type)
-          temp-file (file :tempfile)]
-      (cond
-        (not (or (= file-type "image/jpeg") (= file-type "image/png"))) 401
-        (> size 4096000) 401
-       :else
-       (do
-         (println "Saving image...")
-         (io/make-parents "resources/public/data")
-         (->> file-name
-             (io/file "resources" "public" "data" "images")
-             (io/copy temp-file))
-         201
-        ))
-      )
-    400)
-  )
 
 (defroutes app-routes
   ;; Serve static files required for front
@@ -53,8 +31,8 @@
 
   (POST "/api/images" {parameters :params}
         (let [file (:file parameters)
-              status (load-image file)]
-            {:status status
+              saved? (images/save-image file)]
+            {:status (if saved? 201 401)
              :headers {"Location" "/"}}))
 
   (route/not-found "Not Found"))
