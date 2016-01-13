@@ -12,6 +12,7 @@
 	background-color: #F1F1F1;
 	margin-top: 30px;
     padding: 5px 5px 5px 5px;
+	min-height: 150px;
 }
 .inputfile {
 	width: 0.1px;
@@ -22,11 +23,12 @@
 	z-index: -1;
 }
 .inputfile + label {
-    font-size: 1.25em;
-    font-weight: 700;
+    font-size: 1.15em;
+    font-weight: 600;
     color: white;
     background-color: black;
     display: inline-block;
+	padding: 5px 5px 5px 5px;
 }
 
 .inputfile:focus + label,
