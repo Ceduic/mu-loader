@@ -14,15 +14,13 @@
         (not (or (= file-type "image/jpeg") (= file-type "image/png"))) false
         (> size 4096000) false
        :else
-       (do
-         (println "Saving image...")
-         (io/make-parents "resources/public/data")
-         (->> file-name
-             (io/file "resources" "public" "data" "images")
-             (io/copy temp-file))
-         true
-        ))
-      )
+       (let [image-file (io/file "resources" "public" "data" "images" file-name)]
+         (try
+           (do
+             (io/make-parents image-file)
+             (io/copy temp-file image-file)
+             true)
+           (catch java.io.IOException e false)))))
     false)
   )
 
