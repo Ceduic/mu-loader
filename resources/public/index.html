@@ -20,48 +20,35 @@
 
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/cstyles.css">
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/cstyles.css">
+
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 	<link rel="icon" type="image/png" href="images/favicon.png">
 	<script language="JavaScript" type="text/javascript" src="scripts/jquery-2.2.0.min.js"></script>
 	<script src="scripts/cscript.js"></script>
-	<script>
-	$(document).ready(function(){
-			document.getElementById('fileinput').addEventListener('change', function(){
-			$('#submit').css("display", "block");
-			var file = this.files[0];
-			console.log("name : " + file.name);
-			console.log("size : " + file.size);
-			console.log("type : " + file.type);
-			console.log("date : " + file.lastModified);
-			}, false);
-		});
-		</script>
 </head>
 <body>
 
 <!--Header–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div id="uploadblock" class="sixteen columns" style="display: none; visibility: visible;">
-	<div class="four columns offset-by-four" id="uploadrow">
+	<div class="four columns offset-by-two" id="uploadrow">
 		<form action="api/images" enctype="multipart/form-data" method="post">
-			<div class="u-full-width">
-				<div class="ten columns">
+				<div class="one column offset-by-eleven" id="close">
+				  <i class="material-icons w3-large">close</i>
+				</div>
+				<div class="three-quarters column">
 				  <input type="file" name="file" id="fileinput" class="inputfile" />
 				  <label for="fileinput"><strong><i class="material-icons w3-xlarge">file_upload</i>Choose a file</strong></label>
 				</div>
-				<div class="one column" id="close">
-				  <i class="material-icons w3-xlarge">close</i>
+			<div class="u-max-full-width">
+				<div id="gallery">
 				</div>
-			</div>
-
-			<div class="u-full-width">
-				<div id="gallery"></div>
-			</div>
 				<input type="submit" value="Post it!" id="submit" style="display: none">
+			</div>
 		</form>
 	</div>
 </div>

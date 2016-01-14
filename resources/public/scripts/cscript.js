@@ -9,14 +9,17 @@ $(document).ready(function(){
 
 var uploadfiles = document.querySelector('#fileinput');
 uploadfiles.addEventListener('change', function () {
-    var files = this.files;
+    $('#submit').css("display", "block");
+	var files = this.files;
+	var file = this.files[0];
+	console.log("name : " + file.name);
     for(var i=0; i<files.length; i++){
-        previewImage(this.files[i]);
+        previewImage(this.files[i], file.name);
     }
 
 }, false);
 
-function previewImage(file) {
+function previewImage(file, name) {
     var galleryId = "gallery";
 
     var gallery = document.getElementById(galleryId);
@@ -25,22 +28,36 @@ function previewImage(file) {
     if (!file.type.match(imageType)) {
         throw "File Type must be an image";
     }
+	var galrow = document.createElement("div");
+	galrow.classList.add('u-max-full-width'); 
 
+	
     var thumb = document.createElement("div");
     thumb.classList.add('thumbnail'); 
-	// Add the class thumbnail to the created div
+	thumb.classList.add('three'); 
+	thumb.classList.add('columns');
 	
     var img = document.createElement("img");
     img.file = file;
     thumb.appendChild(img);
-    gallery.appendChild(thumb);
+	galrow.appendChild(thumb);
 	
 	var details = document.createElement("div");
 	details.classList.add('details');
-	var name = document.createElement("p");
-	name = files.name;
-	$('details').append(name);
-	gallery.appendChild(details);
+	details.classList.add('nine');
+	details.classList.add('columns');
+	
+	var par = document.createElement("p");
+	txt = document.createTextNode(name);
+	par.appendChild(txt);
+	//var namepar = name+' text';
+	//$('.details').text('test');
+	//console.log(name+' text');
+	//details.appendChild(name.type());
+	details.appendChild(par);
+	galrow.appendChild(details);
+	
+	gallery.appendChild(galrow);
 
     // Using FileReader to display the image content
     var reader = new FileReader();
