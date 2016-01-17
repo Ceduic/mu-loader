@@ -36,18 +36,18 @@
 <!--Header–––––––––––––––––––––––––––––––––––––––––––––––––– -->
 <div id="uploadblock" class="sixteen columns" style="display: none; visibility: visible;">
 	<div class="four columns offset-by-two" id="uploadrow">
-		<form action="api/images" enctype="multipart/form-data" method="post">
+		<form action="api/images" enctype="multipart/form-data" method="post" class="clearfix">
 				<div class="one column offset-by-eleven" id="close">
 				  <i class="material-icons w3-large">close</i>
 				</div>
-				<div class="three-quarters column">
+				<div class="6 columns forline">
 				  <input type="file" name="file" id="fileinput" class="inputfile" />
 				  <label for="fileinput"><strong><i class="material-icons w3-xlarge">file_upload</i>Choose a file</strong></label>
 				</div>
 			<div class="u-max-full-width">
-				<div id="gallery">
+				<div id="gallery" class="clearfix u-full-width">
 				</div>
-				<input type="submit" value="Post it!" id="submit" style="display: none">
+				<input type="submit" value="Post it!" id="submit">
 			</div>
 		</form>
 	</div>

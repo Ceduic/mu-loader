@@ -30,6 +30,7 @@ function previewImage(file, name) {
     }
 	var galrow = document.createElement("div");
 	galrow.classList.add('u-max-full-width'); 
+	galrow.classList.add('clearfix');
 
 	
     var thumb = document.createElement("div");
