@@ -10,39 +10,38 @@
             [mu-loader.components.comments :as comments]
             [mu-loader.components.images :as images]))
 
-
 (defroutes app-routes
   ;; Serve static files required for front
   (GET  "/" [] (resp/content-type
-                 (resp/resource-response "index.html"
-                                         {:root "public"}) "text/html"))
+                (resp/resource-response "index.html"
+                                        {:root "public"}) "text/html"))
 
   ;;; Public API for REST operations
   ;; Request images based on a set of parameters
   (GET "/api/images" {parameters :params}
-            {:status 200
-             :body (images/get-images parameters)})
+    {:status 200
+     :body (images/get-images parameters)})
 
   ;; Request data for an image based on a set of parameters
   (GET "/api/images/:id{[0-9]+}" [id]
-            {:status 200
-             :body {:info (images/get-image id)
-                    :comments (comments/get-comments id)}})
+    {:status 200
+     :body {:info (images/get-image id)
+            :comments (comments/get-comments id)}})
 
   (POST "/api/images" {parameters :params}
-        (let [file (:file parameters)
-              saved? (images/save-image file)]
-            {:status (if saved? 201 401)
-             :headers {"Location" "/"}}))
+    (let [file (:file parameters)
+          saved? (images/save-image file)]
+      {:status (if saved? 302 400)
+       :headers {"Location" "/"}}))
 
   (route/not-found "Not Found"))
 
 (def app
   (-> app-routes
     ; Disabled CSRF protection for development
-    (wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
-    jsonware/wrap-json-body
-    jsonware/wrap-json-params
-    jsonware/wrap-json-response
-    paramsware/wrap-params
-    multipware/wrap-multipart-params))
+      (wrap-defaults (assoc-in site-defaults [:security :anti-forgery] false))
+      jsonware/wrap-json-body
+      jsonware/wrap-json-params
+      jsonware/wrap-json-response
+      paramsware/wrap-params
+      multipware/wrap-multipart-params))
