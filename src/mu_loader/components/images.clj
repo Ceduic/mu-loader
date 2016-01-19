@@ -13,16 +13,18 @@
       (cond
         (not (or (= file-type "image/jpeg") (= file-type "image/png"))) false
         (> size 4096000) false
-       :else
-       (let [image-file (io/file "resources" "public" "data" "images" file-name)]
-         (try
-           (do
-             (io/make-parents image-file)
-             (io/copy temp-file image-file)
-             true)
-           (catch java.io.IOException e false)))))
-    false)
-  )
+        :else
+        (let [image-file (io/file "resources" "public" "data" "images" file-name)]
+          (try
+            (do
+              (io/make-parents image-file)
+              (io/copy temp-file image-file)
+              true)
+            (catch java.io.IOException e 
+              (do 
+                (println (.getMessage e))
+                false))))))
+    false))
 
 (defn get-images [parameters]
   ;; Return an array of images based on query parameters
