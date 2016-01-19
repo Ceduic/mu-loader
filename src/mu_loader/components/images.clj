@@ -1,5 +1,7 @@
 (ns mu-loader.components.images
-  (:require [clojure.java.io :as io]))
+  (:require [clojure.java.io :as io]
+            [korma.core :as korma]
+            [mu-loader.components.db :as db]))
 
 (def image-count (atom 0))
 
@@ -25,6 +27,9 @@
                 (println (.getMessage e))
                 false))))))
     false))
+
+(defn create-entry [image-url user]
+  true)
 
 (defn get-images [parameters]
   ;; Return an array of images based on query parameters

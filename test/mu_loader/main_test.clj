@@ -3,6 +3,8 @@
             [ring.mock.request :as mock]
             [mu-loader.main :refer :all]))
 
+(println "Testing API")
+
 (deftest test-app
   (testing "main route"
     (let [response (app (mock/request :get "/"))]
