@@ -28,8 +28,16 @@
                 false))))))
     false))
 
-(defn create-entry [image-url user]
-  true)
+;; Creates entry and returns image id
+(defn create-entry [{image-url :img-url user :user}]
+  (korma/insert db/image
+                (korma/values {:img-url image-url :user user})))
+
+;; Gets image entry by id
+;; TODO: Extend with comments subquery
+(defn get-entry [id]
+  (korma/select db/image 
+                (korma/where {:id id})))
 
 (defn get-images [parameters]
   ;; Return an array of images based on query parameters

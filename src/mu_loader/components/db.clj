@@ -6,7 +6,7 @@
 
 (def db {:classname   "org.h2.Driver"
          :subprotocol "h2"
-         :subname     "resources/db/mu-loader.db"})
+         :subname     "resources/db/mu-loader"})
 
 (defdb database db)
 
